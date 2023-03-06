@@ -1,34 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from 'react';
+import { appTitle, appSubtitle, cardSet } from './data';
+import Card from './Card';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  const [cards, setCards] = useState(cardSet);
+  const [curCardId, setCurCardId] = useState(0);
+  const [showFront, setShowFront] = useState(true);
+
+  const moveToPrevCard = ()  => {
+    setCurCardId(prevId => {
+      return prevId - 1 >= 0 ? prevId - 1 : cards.length - 1;
+    });
+    setShowFront(true);
+  }
+
+  function moveToNextCard() {
+    setCurCardId(prevId => {
+      return prevId + 1 < cards.length? prevId + 1 : 0;
+    });
+    setShowFront(true);
+  }
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h2>{appTitle}</h2>
+      <h4>{appSubtitle}</h4>
+      <h5>Number of cards: {cards.length}</h5>
+      <Card 
+        id={curCardId}
+        front={cards[curCardId].front}
+        back={cards[curCardId].back}
+        level={cards[curCardId].level}
+        side={{showFront, setShowFront}}
+      />
+      <div className="buttons">
+        <button onClick={moveToPrevCard}>←</button>
+        <button onClick={() => moveToNextCard()}>→</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
 
-export default App
+export default App;
