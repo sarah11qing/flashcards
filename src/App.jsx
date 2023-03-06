@@ -24,16 +24,18 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h2>{appTitle}</h2>
-      <h4>{appSubtitle}</h4>
-      <h5>Number of cards: {cards.length}</h5>
+    <div className="app">
+      <div className="title">
+        <h1>{appTitle}</h1>
+        <h3>{appSubtitle}</h3>
+        <h5>Number of cards: {cards.length}</h5>
+      </div> 
       <Card 
         id={curCardId}
         front={cards[curCardId].front}
         back={cards[curCardId].back}
         level={cards[curCardId].level}
-        side={{showFront, setShowFront}}
+        face={{showFront, setShowFront}}
       />
       <div className="buttons">
         <button onClick={moveToPrevCard}>←</button>
