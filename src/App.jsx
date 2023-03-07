@@ -25,12 +25,11 @@ function App() {
   }
 
   const moveToNextRandomCard = () => {
-    let randomIndex = Math.floor(Math.random() * cards.length);
+    let randomIndex = curCardIndex;
     while (seen.has(randomIndex)) {
       randomIndex = Math.floor(Math.random() * cards.length);
     }
     setCurCardIndex(randomIndex);
-    console.log(randomIndex);
     seen.add(randomIndex);
     if (seen.size === cards.length) {
       seen.clear();
