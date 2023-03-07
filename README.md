@@ -2,7 +2,7 @@
 
 Submitted by: **He Zhou**
 
-This web app: **insert description**
+This web app: The Ultimate Algorithms Master Flashcards
 
 Time spent: **6** hours spent in total
 
