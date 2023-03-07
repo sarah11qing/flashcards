@@ -31,17 +31,17 @@ export const cardSet = [
   {
     id: 2,
     front: {
-      text: "What is Voting algorithm?",
+      text: "What is Boyer-Moore majority vote algorithm?",
       img: "",
     },
     back: {
-      text: "",
-      img: "",
+      text: `The Boyer-Moore majority vote algorithm is an algorithm for finding the majority of a sequence of elements using linear time and constant space.`,
+      img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Boyer-Moore_MJRTY.svg/1920px-Boyer-Moore_MJRTY.svg.png",
     },
-    level: "medium",
+    level: "hard",
   },
   {
-    id: 0,
+    id: 3,
     front: {
       text: "What is Delayed Calculation?",
       img: "",
@@ -50,31 +50,30 @@ export const cardSet = [
       text: "We can use delayed calculation to defer an operation until it is actually needed. An example is Design a Stack With Increment Operation.",
       img: "",
     },
+    level: "hard",
+  },
+  {
+    id: 4,
+    front: {
+      text: "What's the use of mono stack?",
+      img: "",
+    },
+    back: {
+      text: "A monotonic stack is a data structure that can be used to solve a variety of problems involving finding the next greater element, next smaller element, or similar problems that require identifying the nearest element with some specific property. A monotonic stack is a stack that either maintains a non-decreasing or a non-increasing order of its elements.",
+      img: "https://pbs.twimg.com/media/FCEzSnnUYAIt42h?format=png&name=900x900",
+    },
+    level: "medium",
+  },
+  {
+    id: 5,
+    front: {
+      text: "What is Greedy Algorithms?",
+      img: "",
+    },
+    back: {
+      text: "Greedy algorithms are a class of algorithms that make locally optimal choices at each step with the hope of finding a global optimum. In other words, at each step, the greedy algorithm chooses the option that seems best at that moment, without considering the future consequences or the overall optimal solution.",
+      img: "",
+    },
     level: "easy",
   },
-  {
-    id: 1,
-    front: {
-      text: "How to sort a dict in value's descending order?",
-      img: "",
-    },
-    back: {
-      text: "Use <h1>sorted_list = sorted(map.items(), key = lambda x: -x[1])</h1>. If you want to sort in key's ascending order in the same time, use `sorted_list = sorted(map.items(), key=lambda x: (-x[1], x[0]))`",
-      img: "",
-    },
-    level: "medium",
-  },
-  {
-    id: 2,
-    front: {
-      text: "What is Voting algorithm?",
-      img: "",
-    },
-    back: {
-      text: "",
-      img: "",
-    },
-    level: "medium",
-  },
-  
 ];
