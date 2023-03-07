@@ -6,38 +6,55 @@ import './App.css';
 function App() {
   
   const [cards, setCards] = useState(cardSet);
-  const [curCardId, setCurCardId] = useState(0);
+  const [curCardIndex, setCurCardIndex] = useState(0);
   const [showFront, setShowFront] = useState(true);
+  const [seen, setSeen] = useState(new Set());
 
   const moveToPrevCard = ()  => {
-    setCurCardId(prevId => {
+    setCurCardIndex(prevId => {
       return prevId - 1 >= 0 ? prevId - 1 : cards.length - 1;
     });
     setShowFront(true);
   }
 
   function moveToNextCard() {
-    setCurCardId(prevId => {
+    setCurCardIndex(prevId => {
       return prevId + 1 < cards.length? prevId + 1 : 0;
     });
     setShowFront(true);
   }
 
+  const moveToNextRandomCard = () => {
+    let randomIndex = curCardIndex;
+    while (seen.has(randomIndex)) {
+      randomIndex = Math.floor(Math.random() * cards.length);
+    }
+    setCurCardIndex(randomIndex);
+    seen.add(randomIndex);
+    if (seen.size === cards.length) {
+      seen.clear();
+    }
+    setShowFront(true);
+  };
+
   return (
-    <div className="App">
-      <h2>{appTitle}</h2>
-      <h4>{appSubtitle}</h4>
-      <h5>Number of cards: {cards.length}</h5>
+    <div className="app">
+      <div className="title">
+        <h1>{appTitle}</h1>
+        <h3>{appSubtitle}</h3>
+        <h5>Number of cards: {cards.length}</h5>
+      </div> 
       <Card 
-        id={curCardId}
-        front={cards[curCardId].front}
-        back={cards[curCardId].back}
-        level={cards[curCardId].level}
-        side={{showFront, setShowFront}}
+        id={curCardIndex}
+        front={cards[curCardIndex].front}
+        back={cards[curCardIndex].back}
+        level={cards[curCardIndex].level}
+        face={{showFront, setShowFront}}
       />
       <div className="buttons">
-        <button onClick={moveToPrevCard}>←</button>
-        <button onClick={() => moveToNextCard()}>→</button>
+        {/* <button onClick={moveToPrevCard}>←</button> */}
+        {/* <button onClick={() => moveToNextCard()}>→</button> */}
+        <button onClick={() => moveToNextRandomCard()}>→</button> 
       </div>
     </div>
   )

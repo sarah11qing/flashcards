@@ -1,24 +1,23 @@
-function Card({ id, front, back, level, side }) {
+function Card({ id, front, back, level, face }) {
 
-  const {showFront, setShowFront} = side;
+  const {showFront, setShowFront} = face;
 
   function toggleSide() {
     setShowFront(prev => !prev);
   }
 
   return (
-    <div className="card" onClick={toggleSide}>
+    <div className={`card ${level} ${showFront ? "":"flip"}`} onClick={toggleSide}>
       { showFront 
-        ?
-        <>
-          <p>{front.text}</p>
-          { front.img && <img src={front.img} alt={`front image for card ${id}`} /> }
-        </> 
-        : 
-        <>
-          <p>{back.text}</p>
-          { back.img && <img src={back.img} alt={`back image for card ${id}`} /> }
-        </> 
+        ? <div className="card-face front">
+            <p>{front.text}</p>
+            { front.img && <img src={front.img} alt={`front image for card ${id}`} /> }
+          </div>
+        :
+          <div className="card-face back">
+            <p>{back.text}</p>
+            { back.img && <img src={back.img} alt={`back image for card ${id}`} /> }
+          </div>
       }
     </div>
   )
