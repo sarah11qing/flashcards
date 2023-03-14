@@ -11,31 +11,48 @@ function App() {
   const [seen, setSeen] = useState(new Set());
 
   const moveToPrevCard = ()  => {
+    if (curCardIndex == 0) {
+      return;
+    }
     setCurCardIndex(prevId => {
-      return prevId - 1 >= 0 ? prevId - 1 : cards.length - 1;
+      return prevId - 1;
     });
     setShowFront(true);
   }
 
   function moveToNextCard() {
+    if (curCardIndex == cards.length - 1) {
+      return;
+    }
     setCurCardIndex(prevId => {
-      return prevId + 1 < cards.length? prevId + 1 : 0;
+      return prevId + 1;
     });
     setShowFront(true);
   }
 
-  const moveToNextRandomCard = () => {
-    let randomIndex = curCardIndex;
-    while (seen.has(randomIndex)) {
-      randomIndex = Math.floor(Math.random() * cards.length);
+  const shuffleCards = () => {
+    const shuffledCards = [...cards];
+    for (let i = shuffledCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledCards[i], shuffledCards[j]] = [shuffledCards[j], shuffledCards[i]];
     }
-    setCurCardIndex(randomIndex);
-    seen.add(randomIndex);
-    if (seen.size === cards.length) {
-      seen.clear();
-    }
+    setCards(shuffledCards);
+    setCurCardIndex(0);
     setShowFront(true);
   };
+
+  // const moveToNextRandomCard = () => {
+  //   let randomIndex = curCardIndex;
+  //   while (seen.has(randomIndex)) {
+  //     randomIndex = Math.floor(Math.random() * cards.length);
+  //   }
+  //   setCurCardIndex(randomIndex);
+  //   seen.add(randomIndex);
+  //   if (seen.size === cards.length) {
+  //     seen.clear();
+  //   }
+  //   setShowFront(true);
+  // };
 
   return (
     <div className="app">
@@ -52,9 +69,9 @@ function App() {
         face={{showFront, setShowFront}}
       />
       <div className="buttons">
-        {/* <button onClick={moveToPrevCard}>←</button> */}
-        {/* <button onClick={() => moveToNextCard()}>→</button> */}
-        <button onClick={() => moveToNextRandomCard()}>→</button> 
+        <button onClick={moveToPrevCard} disabled={curCardIndex==0}>←</button>
+        <button onClick={moveToNextCard} disabled={curCardIndex==cards.length - 1}>→</button>
+        <button onClick={shuffleCards}>Shuffle</button>
       </div>
     </div>
   )
