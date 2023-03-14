@@ -1,4 +1,4 @@
-# Web Development Project 3 - *Flashcards*
+# Web Development Project 3 - *Plant Master Flashcards*
 
 Submitted by: **Your Name Here**
 
@@ -30,7 +30,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='walkthrough2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough for unit3' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  
